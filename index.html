@@ -1,9 +1,394 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Meu Site</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Você</title>
+<link href="https://fonts.googleapis.com/css?family=Marck+Script|Poppins:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --cor-primaria: #EE6CA8;
+    --cor-bg: #2a1644;
+    --cor-envelope: #ffd6ec;
+    --cor-titulo: #fff;
+    --cor-btn: #f7b2d9;
+    --cor-btn-hover: #ff88c2;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    color: var(--cor-titulo);
+    background: linear-gradient(160deg, #e9baff 0%, var(--cor-bg) 100%);
+    min-height: 100vh;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; align-items: center;
+    flex-direction: column;
+    padding: 40px 12px;
+    position: relative;
+    z-index: 2;
+}
+.inicio {
+    text-align: center;
+    animation: fadeIn 1.4s;
+}
+@keyframes fadeIn {
+    from { opacity:0; transform: translateY(60px);}
+    to   { opacity:1; transform:none;}
+}
+.inicio h1 {
+    font-family: 'Marck Script', cursive;
+    font-size: 3.3rem;
+    margin-bottom: 20px;
+    color: #fff;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 3px 15px #ca6bb3be;
+}
+.inicio p { opacity: 0.9; font-size: 1.2rem; }
+.seta {
+    margin: 32px auto 0;
+    font-size: 2.5rem;
+    color: var(--cor-primaria);
+    animation: setaMove 2s infinite alternate ease-in;
+}
+@keyframes setaMove {
+    from { transform: translateY(0);}
+    to   { transform: translateY(18px);}
+}
+.botao {
+    margin-top: 45px;
+    padding: 16px 36px;
+    border: none; outline: none;
+    border-radius: 18px;
+    font-size: 1.2rem;
+    background: var(--cor-btn);
+    color: #fff; cursor: pointer;
+    box-shadow: 0 2px 30px #c883b4a0;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    transition: background .3s, transform .2s;
+    position: relative;
+    z-index: 2;
+}
+.botao:hover {
+    background: var(--cor-btn-hover);
+    transform: scale(1.07);
+    box-shadow: 0 4px 40px #ff88c2aa;
+}
+.carta-section {
+    min-height: 100vh;
+    display: flex; justify-content: center; align-items: center; flex-direction: column;
+}
+.container-carta {
+    width: 100%;
+    max-width: 1400px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    position: relative;
+}
+.envelope {
+    position: absolute; width: 340px; height: 210px;
+    opacity: 1;
+    z-index: 5;
+    transition: opacity 1s, transform 1s;
+    margin-bottom: 20px;
+    left: 50%; transform: translateX(-50%);
+    box-shadow: 0 8px 42px #ea95b1af;
+}
+.envelope.sumir {
+    opacity: 0; transform: scale(.7) translateY(70px);
+    pointer-events: none;
+}
+.envelope .base {
+    position: absolute; inset: 0;
+    background: var(--cor-envelope);
+    border-radius: 18px;
+    z-index: 1;
+    box-shadow: 0 3px 32px #ecc2e9c1;
+}
+.envelope .frente {
+    position: absolute; inset: 0;
+    background: #eeaedb;
+    clip-path: polygon(0 100%, 0 38%, 50% 68%, 100% 38%, 100% 100%);
+    z-index: 3;
+    border-radius: 18px;
+}
+.envelope .tampa {
+    position: absolute; top:0; left:0; width:100%; height: 55%;
+    background: #fea9be;
+    clip-path: polygon(0 0, 50% 97%, 100% 0);
+    border-radius: 12px 12px 40px 40px/16px 16px 60px 60px;
+    box-shadow: 0 2px 22px 3px #e2a2c4c0 inset;
+    transform-origin: top;
+    transition: 1s;
+    z-index: 4;
+}
+.cora-top {
+    position: absolute; top:13%; left:54%;
+    transform: translate(-50%,-50%);
+    z-index:7;
+    transition: .5s;
+}
+/* --- PAPEL COM PROTEÇÃO DE BORDA E MIOLO CENTRAL --- */
+.papel {
+    margin-top: 25px;
+    width: 98vw;
+    max-width: 950px;
+    min-height: 650px;
+    background: url('https://image.slidesdocs.com/responsive-images/docs/vintage-parchment-paper-map-word-template_cc807c45fc__1131_1600.jpg') center center/100% 100% no-repeat, #fff8e7;
+    color: #5a3d26;
+    border-radius: 32px;
+    padding: 150px 140px 150px 140px;
+    box-shadow: 0 18px 60px #c57ed7bb, 0 0 0 16px #fff5 transparent;
+    border: 2px solid #e0cfa3;
+    border-bottom: 18px solid #e8d8abaa;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: scale(.94) translateY(20px);
+    transition: 1s;
+    z-index: 10;
+    font-family: 'Poppins', Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff8e7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.papel.aberta {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+.texto-carta {
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: center;
+    word-break: break-word;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.texto-carta h2 {
+    font-family: 'Marck Script', cursive;
+    font-size: 2rem;
+    color: #b08042;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+.texto-carta p {
+    font-size:0.93rem;
+    font-family: 'Poppins', Arial, sans-serif;
+    margin-bottom: 22px;
+}
+.texto-carta .assinatura {
+    font-family: 'Marck Script', cursive;
+    color: #985c2d;
+    font-size: 1.15rem;
+    margin-top: 28px;
+    text-align: center;
+    letter-spacing: 1.1px;
+}
+@media (max-width: 1200px) {
+    .papel {padding: 12vw 5vw;}
+    .texto-carta {max-width: 90vw;}
+}
+@media (max-width: 700px) {
+    .envelope { width: 96vw; height: 130px;}
+    .papel { max-width:96vw; padding: 15vw 4vw 15vw 4vw; min-height: 260px;}
+    .texto-carta { max-width:96vw; font-size:0.85rem;}
+}
+/* Botão modo noturno flutuante */
+#toggleNight {
+  position:fixed;top:20px;right:20px;z-index:9999;
+  background:#222;color:#fff;
+  border:none;padding:11px 21px;
+  border-radius:22px;box-shadow:0 2px 7px #2225;
+  cursor:pointer;font-weight:700;font-size:1rem;
+}
+</style>
 </head>
 <body>
-    <h1>Oi!</h1>
+
+<audio id="bg-music" loop>
+    <source src="ararinha.mp3.mpeg" type="audio/mpeg">
+</audio>
+
+<!-- Botão modo noturno -->
+<button id="toggleNight">🌙 Modo Noturno</button>
+
+<!-- Canvas das pétalas flutuantes -->
+<canvas id="petalasCanvas" style="position:fixed;pointer-events:none;left:0;top:0;width:100vw;height:100vh;z-index:1"></canvas>
+
+<!-- PRIMEIRA TELA -->
+<section class="inicio" id="primeira">
+    <h1>Eu fiz isso para você</h1>
+    <p>Role ou clique para continuar</p>
+    <div class="seta">↓</div>
+    <button class="botao" onclick="abrirCarta()">Abrir Carta</button>
+</section>
+<!-- SEGUNDA TELA -->
+<section class="carta-section" id="cartaDestino">
+    <div class="container-carta">
+        <div class="envelope" id="envelope">
+            <div class="base"></div>
+            <div class="frente"></div>
+            <div class="tampa" id="tampa"></div>
+        </div>
+        <div class="cora-top" id="coraTopo" style="display:block;">
+            <svg width="44" height="44" viewBox="0 0 50 50" fill="none">
+                <path d="M25 44S3 30.5 3 16.5 16.5 3 25 15.5C33.5 3 47 16.5 47 16.5S47 30.5 25 44Z" fill="#EE6CA8" stroke="#fff" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="papel" id="papel">
+            <div class="texto-carta">
+                <h2>Oi, amor.</h2>
+                <p>
+                    Sinceramente, eu nem sei direito como começar essa carta, porque é estranho tentar colocar em palavras alguém que já virou uma parte tão grande da minha vida. Mas caramba… quase seis anos. Quando eu paro pra pensar nisso eu fico até meio em choque, porque parece que foi ontem que eu entrei naquela sala de catequese num sábado, morrendo por dentro porque eu tinha sido transferido pra um lugar novo, com pessoas novas, sem conhecer literalmente ninguém. E adivinha quem tava lá? Você.
+                    <br><br>
+                    E acho muito louco pensar que foi exatamente naquela sala simples de catequese que uma das melhores coisas da minha vida começou. Porque foi lá que eu comecei a gostar de você sem perceber, foi lá que meus dias começaram a voar só porque eu sabia que no sábado eu ia te encontrar, foi lá que eu te dei meu primeiro abraço, foi lá que eu falei pro Matheus que eu gostava de você e anos depois foi naquela mesma sala que aconteceu nosso primeiro selinho, só nós dois ali. Cara… isso parece muito cena de filme na minha cabeça.
+                    <br><br>
+                    E depois disso veio o cinema, nossos abraços demorados, eu segurando sua cintura, nossas provocações bobas, nossas conversas aleatórias, nossos beijos e todos aqueles momentos pequenos que, sem perceber, foram transformando “eu e você” em “nós”. E eu acho isso muito bonito, porque nada entre a gente aconteceu rápido. Tudo foi acontecendo aos poucos, no tempo certo, como se a vida estivesse preparando tudo devagar pra um dia finalmente acontecer com a gente.
+                    <br><br>
+                    E sinceramente? Eu passaria por tudo isso de novo só pra chegar onde a gente tá hoje. Porque antes mesmo da gente ter “algo”, você já era meu conforto. Nos meus dias ruins, nas brigas aqui em casa, nos momentos em que minha cabeça tava uma bagunça completa, você tava lá. E às vezes conversar com você era literalmente a melhor parte do meu dia. Você me acalma de um jeito que eu nem sei explicar direito, e eu amo isso.
+                    <br><br>
+                    Amo ouvir você falando, amo seus áudios gigantescos contando do seu dia, de algo que aconteceu, de algo que te deixou animada, nervosa, feliz ou ansiosa. E o mais engraçado é que eu poderia ficar HORAS ouvindo você falar sem cansar, porque quando é você, até as coisas simples ficam importantes pra mim. E olha que louco: hoje eu durmo com um lacinho seu no braço sentindo o cheiro do seu perfume igual um apaixonado completamente rendido. E pior que eu gosto disso.
+                    <br><br>
+                    Gosto dos seus cabelos cacheados, do seu sorriso, do seu jeito, das nossas mini provocações, dos nossos abraços, do jeito que você me olha, do jeito que você conseguiu virar uma parte tão importante da minha rotina sem fazer esforço nenhum. E eu também amo o seu mundo, sua família, seus priminhos, sua irmã, o Leo, tudo. Porque eu não me apaixonei só por você, eu me apaixonei pela sua presença na minha vida inteira.
+                    <br><br>
+                    E talvez a coisa mais bonita nisso tudo seja perceber que, depois de tantos anos, eu ainda olho pra você e penso exatamente a mesma coisa:
+                    <br><br>
+                    “Caramba… é ela.”
+                    <br><br>
+                    E agora, finalmente, eu posso chamar essa menina incrível de minha.
+                </p>
+                <div class="assinatura">Eu te amo muito, Laura ❤️</div>
+                <!-- Mensagem secreta -->
+                <button class="botao" style="margin-top:35px" onclick="mostrarMensagem()">Revelar Mensagem Extra</button>
+                <div id="mensagem-extra" style="display:none;margin-top:25px;">
+                   <p style="font-size:1.17rem;color:#AE3175;font-weight:600;text-align:center;">
+                     “Em todas as versões da vida, eu escolheria você.💖”
+                   </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pétalas flutuando pelo fundo -->
+<script>
+const pCanvas = document.getElementById('petalasCanvas');
+const pCtx = pCanvas.getContext('2d');
+let PW = window.innerWidth, PH = window.innerHeight;
+pCanvas.width = PW; pCanvas.height = PH;
+window.addEventListener('resize',()=>{PW=window.innerWidth; PH=window.innerHeight; pCanvas.width=PW; pCanvas.height=PH;});
+
+const petalas = [];
+function spPetala(){
+   for(let i=0;i<2;i++)
+   petalas.push({
+     x: Math.random()*PW,
+     y: -30,
+     s: 18+Math.random()*26,
+     angle: Math.random()*2*Math.PI,
+     vel: 2+Math.random()*1.3,
+     rot: (Math.random()-.5)*.015
+   });
+}
+function drawPetala(p){
+   pCtx.save();
+   pCtx.translate(p.x,p.y);
+   pCtx.rotate(p.angle);
+   pCtx.beginPath();
+   pCtx.moveTo(0,0);
+   pCtx.bezierCurveTo(-p.s/2,-p.s/2, -p.s, p.s/5, 0, p.s);
+   pCtx.bezierCurveTo(p.s, p.s/5, p.s/2,-p.s/2, 0,0);
+   pCtx.fillStyle = "#ffc0cb";
+   pCtx.shadowColor = '#faa';
+   pCtx.shadowBlur = 8;
+   pCtx.fill();
+   pCtx.restore();
+}
+function animaPetalas(){
+   pCtx.clearRect(0,0,PW,PH);
+   for(let p of petalas){
+       p.y+=p.vel;
+       p.angle+=p.rot;
+       drawPetala(p);
+   }
+   while (petalas.length > 60) petalas.shift();
+   requestAnimationFrame(animaPetalas);
+}
+setInterval(spPetala, 800);
+animaPetalas();
+</script>
+
+<!-- Mensagem secreta -->
+<script>
+function mostrarMensagem() {
+  document.getElementById('mensagem-extra').style.display='block';
+  event.target.style.display='none';
+}
+</script>
+
+<!-- Envelope/script carta -->
+<script>
+function abrirCarta() {
+
+    const musica = document.getElementById("bg-music");
+
+    musica.play();    
+    const envelope = document.getElementById("envelope");
+    const tampa = document.getElementById("tampa");
+    const papel = document.getElementById("papel");
+    const coraTopo = document.getElementById("coraTopo");
+    tampa.style.transform = "rotateX(180deg)";
+    setTimeout(() => {
+        envelope.classList.add("sumir");
+        papel.classList.add("aberta");
+        coraTopo.style.opacity = "0";
+        coraTopo.style.transform = "translateY(-36px) scale(1.5)";
+        document.getElementById('papel').scrollIntoView({behavior: "smooth", block: "start"});
+    }, 680);
+    setTimeout(() => {
+        coraTopo.style.display = "none";
+    }, 1600);
+}
+</script>
+
+<!-- Modo noturno -->
+<script>
+const nightBtn = document.getElementById('toggleNight');
+let noite=false;
+nightBtn.addEventListener('click',function(){
+    noite=!noite;
+    if(noite){
+        document.body.style.background = 'linear-gradient(135deg, #130629 0%, #2a1644 100%)';
+        document.body.style.color = "#fff";
+        document.querySelectorAll('.papel').forEach(el=>{
+          el.style.background = "#2e1930";
+          el.style.color = "#fff";
+          el.style.borderColor = "#444";
+        });
+        nightBtn.innerHTML="☀️ Modo Dia";
+    }else{
+        document.body.style.background = 'linear-gradient(160deg, #e9baff 0%, var(--cor-bg) 100%)';
+        document.body.style.color = "#fff";
+        document.querySelectorAll('.papel').forEach(el=>{
+          el.style.background = "url('https://image.slidesdocs.com/responsive-images/docs/vintage-parchment-paper-map-word-template_cc807c45fc__1131_1600.jpg') center center/100% 100% no-repeat, #fff8e7";
+          el.style.color = "#5a3d26";
+          el.style.borderColor = "#e0cfa3";
+        });
+        nightBtn.innerHTML="🌙 Modo Noturno";
+    }
+});
+</script>
 </body>
 </html>
